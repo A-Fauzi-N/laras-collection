@@ -1,5 +1,4 @@
 import { Elysia } from 'elysia';
-import { node } from '@elysiajs/node';
 import { cors } from '@elysiajs/cors';
 import { jenisBarangRoutes } from './routes/jenisBarang.js';
 import { penjualanRoutes } from './routes/penjualan.js';
@@ -7,7 +6,7 @@ import { pembayaranPenjualanRoutes } from './routes/pembayaranPenjualan.js';
 import { pembayaranTokoRoutes } from './routes/pembayaranToko.js';
 import { dashboardRoutes } from './routes/dashboard.js';
 
-const app = new Elysia({ adapter: node() })
+const app = new Elysia()
   .use(
     cors({
       origin: true,
@@ -27,4 +26,22 @@ const app = new Elysia({ adapter: node() })
   .use(pembayaranTokoRoutes)
   .use(dashboardRoutes);
 
-export default app.fetch;
+export async function GET(request: Request) {
+  return app.handle(request);
+}
+
+export async function POST(request: Request) {
+  return app.handle(request);
+}
+
+export async function PUT(request: Request) {
+  return app.handle(request);
+}
+
+export async function DELETE(request: Request) {
+  return app.handle(request);
+}
+
+export async function OPTIONS(request: Request) {
+  return app.handle(request);
+}
