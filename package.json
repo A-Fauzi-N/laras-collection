@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd frontend && npm install && npx vite build"
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "build": "cd frontend && npx vite build"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.2.0",
     "@elysiajs/node": "^1.4.5",
+    "@types/node": "^22.10.2",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.4",
     "elysia": "^1.2.9",
-    "postgres": "^3.4.5"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.2",
+    "postgres": "^3.4.5",
     "typescript": "^5.7.2"
   }
 }
