@@ -4,5 +4,17 @@
   "private": true,
   "scripts": {
     "build": "cd frontend && npm install && npx vite build"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/node": "^1.4.5",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.38.4",
+    "elysia": "^1.2.9",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
   }
 }
