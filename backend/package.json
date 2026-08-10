@@ -16,7 +16,6 @@
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.4",
     "elysia": "^1.2.9",
-    "laras-collection": "file:..",
     "postgres": "^3.4.5"
   },
   "devDependencies": {
