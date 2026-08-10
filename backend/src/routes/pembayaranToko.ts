@@ -23,18 +23,19 @@ export const pembayaranTokoRoutes = new Elysia({ prefix: '/api/pembayaran-toko' 
   // Create store payment for clothing stock with multi-item support
   .post(
     '/',
-    async ({ body, set }) => {
+    async ({ body, set }: any) => {
       try {
+        const b = body as any;
         let inputItems: Array<{ jenis_barang_id: number; harga: number | string; jumlah: number | string }> = [];
 
-        if (Array.isArray(body.items) && body.items.length > 0) {
-          inputItems = body.items;
-        } else if (body.jenis_barang_id && body.harga !== undefined) {
+        if (Array.isArray(b.items) && b.items.length > 0) {
+          inputItems = b.items;
+        } else if (b.jenis_barang_id && b.harga !== undefined) {
           inputItems = [
             {
-              jenis_barang_id: body.jenis_barang_id,
-              harga: body.harga,
-              jumlah: Number(body.jumlah || 1),
+              jenis_barang_id: b.jenis_barang_id,
+              harga: b.harga,
+              jumlah: Number(b.jumlah || 1),
             },
           ];
         }
@@ -90,8 +91,8 @@ export const pembayaranTokoRoutes = new Elysia({ prefix: '/api/pembayaran-toko' 
             harga: String(processedItems[0].harga),
             jumlah: processedItems[0].jumlah,
             total_harga: String(totalHarga),
-            catatan: body.catatan || '',
-          })
+            catatan: b.catatan || '',
+          } as any)
           .returning();
 
         const paymentId = newPayment[0].id;
@@ -104,7 +105,7 @@ export const pembayaranTokoRoutes = new Elysia({ prefix: '/api/pembayaran-toko' 
             harga: String(item.harga),
             jumlah: item.jumlah,
             subtotal: String(item.subtotal),
-          });
+          } as any);
         }
 
         return {

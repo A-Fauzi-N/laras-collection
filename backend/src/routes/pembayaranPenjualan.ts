@@ -19,10 +19,11 @@ export const pembayaranPenjualanRoutes = new Elysia({ prefix: '/api/pembayaran-p
   // Add new payment for a customer sale
   .post(
     '/',
-    async ({ body, set }) => {
+    async ({ body, set }: any) => {
       try {
-        const penjualanId = Number(body.penjualan_id);
-        const jumlahBayar = Number(body.jumlah_bayar);
+        const b = body as any;
+        const penjualanId = Number(b.penjualan_id);
+        const jumlahBayar = Number(b.jumlah_bayar);
 
         if (jumlahBayar <= 0) {
           set.status = 400;
@@ -56,9 +57,9 @@ export const pembayaranPenjualanRoutes = new Elysia({ prefix: '/api/pembayaran-p
           .values({
             penjualan_id: penjualanId,
             jumlah_bayar: String(jumlahBayar),
-            metode_pembayaran: body.metode_pembayaran || 'Transfer',
-            catatan: body.catatan || '',
-          })
+            metode_pembayaran: b.metode_pembayaran || 'Transfer',
+            catatan: b.catatan || '',
+          } as any)
           .returning();
 
         // 2. Update sale record status and totals
@@ -68,7 +69,7 @@ export const pembayaranPenjualanRoutes = new Elysia({ prefix: '/api/pembayaran-p
             total_terbayar: String(newTerbayar),
             sisa_pembayaran: String(newSisa),
             status_pembayaran: newStatus,
-          })
+          } as any)
           .where(eq(penjualan.id, penjualanId))
           .returning();
 

@@ -24,15 +24,16 @@ export const jenisBarangRoutes = new Elysia({ prefix: '/api/jenis-barang' })
   // Create new jenis barang with default harga
   .post(
     '/',
-    async ({ body, set }) => {
+    async ({ body, set }: any) => {
       try {
+        const b = body as any;
         const newItem = await db
           .insert(jenisBarang)
           .values({
-            nama_jenis: body.nama_jenis,
-            harga_default: String(body.harga_default),
-            deskripsi: body.deskripsi || '',
-          })
+            nama_jenis: b.nama_jenis,
+            harga_default: String(b.harga_default),
+            deskripsi: b.deskripsi || '',
+          } as any)
           .returning();
 
         return { success: true, message: 'Jenis barang berhasil ditambahkan', data: newItem[0] };
@@ -53,16 +54,17 @@ export const jenisBarangRoutes = new Elysia({ prefix: '/api/jenis-barang' })
   // Update jenis barang
   .put(
     '/:id',
-    async ({ params, body, set }) => {
+    async ({ params, body, set }: any) => {
       const id = Number(params.id);
+      const b = body as any;
       try {
         const updated = await db
           .update(jenisBarang)
           .set({
-            nama_jenis: body.nama_jenis,
-            harga_default: String(body.harga_default),
-            deskripsi: body.deskripsi,
-          })
+            nama_jenis: b.nama_jenis,
+            harga_default: String(b.harga_default),
+            deskripsi: b.deskripsi,
+          } as any)
           .where(eq(jenisBarang.id, id))
           .returning();
 
