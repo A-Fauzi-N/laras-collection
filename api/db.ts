@@ -29,7 +29,9 @@ export async function ensureTablesExist() {
         harga_default NUMERIC(12, 2) NOT NULL,
         deskripsi TEXT,
         created_at TIMESTAMP DEFAULT NOW() NOT NULL
-      );
+      )
+    `;
+    await queryClient`
       CREATE TABLE IF NOT EXISTS penjualan (
         id SERIAL PRIMARY KEY,
         kode_transaksi TEXT NOT NULL UNIQUE,
@@ -44,7 +46,9 @@ export async function ensureTablesExist() {
         sisa_pembayaran NUMERIC(12, 2) NOT NULL,
         status_pembayaran TEXT NOT NULL DEFAULT 'Belum Lunas',
         created_at TIMESTAMP DEFAULT NOW() NOT NULL
-      );
+      )
+    `;
+    await queryClient`
       CREATE TABLE IF NOT EXISTS penjualan_item (
         id SERIAL PRIMARY KEY,
         penjualan_id INTEGER NOT NULL REFERENCES penjualan(id) ON DELETE CASCADE,
@@ -52,7 +56,9 @@ export async function ensureTablesExist() {
         harga NUMERIC(12, 2) NOT NULL,
         jumlah INTEGER NOT NULL DEFAULT 1,
         subtotal NUMERIC(12, 2) NOT NULL
-      );
+      )
+    `;
+    await queryClient`
       CREATE TABLE IF NOT EXISTS pembayaran_penjualan (
         id SERIAL PRIMARY KEY,
         penjualan_id INTEGER NOT NULL REFERENCES penjualan(id) ON DELETE CASCADE,
@@ -60,7 +66,9 @@ export async function ensureTablesExist() {
         metode_pembayaran TEXT NOT NULL DEFAULT 'Transfer',
         catatan TEXT,
         tanggal_bayar TIMESTAMP DEFAULT NOW() NOT NULL
-      );
+      )
+    `;
+    await queryClient`
       CREATE TABLE IF NOT EXISTS pembayaran_toko (
         id SERIAL PRIMARY KEY,
         kode_pembelian TEXT NOT NULL UNIQUE,
@@ -70,7 +78,9 @@ export async function ensureTablesExist() {
         total_harga NUMERIC(12, 2) NOT NULL,
         catatan TEXT,
         tanggal_bayar TIMESTAMP DEFAULT NOW() NOT NULL
-      );
+      )
+    `;
+    await queryClient`
       CREATE TABLE IF NOT EXISTS pembayaran_toko_item (
         id SERIAL PRIMARY KEY,
         pembayaran_toko_id INTEGER NOT NULL REFERENCES pembayaran_toko(id) ON DELETE CASCADE,
@@ -78,7 +88,7 @@ export async function ensureTablesExist() {
         harga NUMERIC(12, 2) NOT NULL,
         jumlah INTEGER NOT NULL DEFAULT 1,
         subtotal NUMERIC(12, 2) NOT NULL
-      );
+      )
     `;
     initialized = true;
   } catch (err) {
