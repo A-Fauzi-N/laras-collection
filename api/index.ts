@@ -5,6 +5,7 @@ import { penjualanRoutes } from './routes/penjualan.js';
 import { pembayaranPenjualanRoutes } from './routes/pembayaranPenjualan.js';
 import { pembayaranTokoRoutes } from './routes/pembayaranToko.js';
 import { dashboardRoutes } from './routes/dashboard.js';
+import { ensureTablesExist } from './db.js';
 
 const app = new Elysia()
   .use(
@@ -26,22 +27,27 @@ const app = new Elysia()
   .use(pembayaranTokoRoutes)
   .use(dashboardRoutes);
 
-export async function GET(request: Request) {
+async function handleRequest(request: Request) {
+  await ensureTablesExist();
   return app.handle(request);
+}
+
+export async function GET(request: Request) {
+  return handleRequest(request);
 }
 
 export async function POST(request: Request) {
-  return app.handle(request);
+  return handleRequest(request);
 }
 
 export async function PUT(request: Request) {
-  return app.handle(request);
+  return handleRequest(request);
 }
 
 export async function DELETE(request: Request) {
-  return app.handle(request);
+  return handleRequest(request);
 }
 
 export async function OPTIONS(request: Request) {
-  return app.handle(request);
+  return handleRequest(request);
 }
