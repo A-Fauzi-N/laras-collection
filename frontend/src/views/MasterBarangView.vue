@@ -184,7 +184,7 @@ import {
   Loader2 as Loader2Icon, 
   Inbox as InboxIcon, 
   Trash2 as Trash2Icon 
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import { 
   getJenisBarang, 
   createJenisBarang, 

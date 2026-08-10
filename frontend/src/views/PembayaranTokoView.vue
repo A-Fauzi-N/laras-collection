@@ -279,7 +279,7 @@ import {
   Inbox as InboxIcon,
   Trash2 as Trash2Icon,
   Package as PackageIcon
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import { 
   getPembayaranToko, 
   getJenisBarang, 

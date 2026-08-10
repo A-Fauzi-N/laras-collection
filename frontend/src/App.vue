@@ -74,5 +74,5 @@ import {
   ShoppingBag as ShoppingBagIcon, 
   CreditCard as CreditCardIcon, 
   Tags as TagsIcon 
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 </script>

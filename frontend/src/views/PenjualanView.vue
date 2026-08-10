@@ -422,7 +422,7 @@ import {
   CreditCard as CreditCardIcon,
   Trash2 as Trash2Icon,
   Package as PackageIcon
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import { 
   getPenjualan, 
   getJenisBarang, 

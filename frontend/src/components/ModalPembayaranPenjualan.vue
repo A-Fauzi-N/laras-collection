@@ -116,7 +116,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { X as XIcon, CreditCard as CreditCardIcon, Loader2 as Loader2Icon } from 'lucide-vue-next';
+import { X as XIcon, CreditCard as CreditCardIcon, Loader2 as Loader2Icon } from '@lucide/vue';
 import { createPembayaranPenjualan, type Penjualan } from '../services/api';
 
 const props = defineProps<{

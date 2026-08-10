@@ -182,7 +182,7 @@ import {
   CreditCard as CreditCardIcon,
   Sparkles as SparklesIcon,
   ArrowRight as ArrowRightIcon
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import { getDashboardStats, type DashboardStats } from '../services/api';
 
 const loading = ref<boolean>(false);
