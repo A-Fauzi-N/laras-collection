@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia';
-import { db } from '../db/index.js';
-import { pembayaranToko, pembayaranTokoItem, jenisBarang } from '../db/schema.js';
+import { db } from '../db/index';
+import { pembayaranToko, pembayaranTokoItem, jenisBarang } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 export const pembayaranTokoRoutes = new Elysia({ prefix: '/api/pembayaran-toko' })

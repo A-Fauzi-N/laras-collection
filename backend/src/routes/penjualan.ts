@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia';
-import { db } from '../db/index.js';
-import { penjualan, penjualanItem, jenisBarang, pembayaranPenjualan } from '../db/schema.js';
+import { db } from '../db/index';
+import { penjualan, penjualanItem, jenisBarang, pembayaranPenjualan } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 export const penjualanRoutes = new Elysia({ prefix: '/api/penjualan' })

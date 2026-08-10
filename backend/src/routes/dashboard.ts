@@ -1,6 +1,6 @@
 import { Elysia } from 'elysia';
-import { db } from '../db/index.js';
-import { penjualan, pembayaranToko, jenisBarang } from '../db/schema.js';
+import { db } from '../db/index';
+import { penjualan, pembayaranToko, jenisBarang } from '../db/schema';
 import { sql } from 'drizzle-orm';
 
 export const dashboardRoutes = new Elysia({ prefix: '/api/dashboard' })

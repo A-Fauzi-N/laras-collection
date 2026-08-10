@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia';
-import { db } from '../db/index.js';
-import { jenisBarang } from '../db/schema.js';
+import { db } from '../db/index';
+import { jenisBarang } from '../db/schema';
 import { eq, desc } from 'drizzle-orm';
 
 export const jenisBarangRoutes = new Elysia({ prefix: '/api/jenis-barang' })
