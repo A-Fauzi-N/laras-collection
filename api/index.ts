@@ -15,6 +15,13 @@ const app = new Elysia({ adapter: node() })
       allowedHeaders: ['Content-Type', 'Authorization'],
     })
   )
+  .onError(({ error, set }) => {
+    set.status = 500;
+    return {
+      success: false,
+      message: error?.message || 'Database Connection Error. Pastikan DATABASE_URL diset di Vercel Environment Variables.',
+    };
+  })
   .get('/api', () => ({
     name: "Laras's Collection API",
     description: 'Sistem Informasi Penjualan Pakaian Online Laras',
