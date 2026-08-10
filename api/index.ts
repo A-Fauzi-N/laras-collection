@@ -1,11 +1,11 @@
 import { Elysia } from 'elysia';
 import { node } from '@elysiajs/node';
 import { cors } from '@elysiajs/cors';
-import { jenisBarangRoutes } from '../backend/src/routes/jenisBarang';
-import { penjualanRoutes } from '../backend/src/routes/penjualan';
-import { pembayaranPenjualanRoutes } from '../backend/src/routes/pembayaranPenjualan';
-import { pembayaranTokoRoutes } from '../backend/src/routes/pembayaranToko';
-import { dashboardRoutes } from '../backend/src/routes/dashboard';
+import { jenisBarangRoutes } from './routes/jenisBarang.js';
+import { penjualanRoutes } from './routes/penjualan.js';
+import { pembayaranPenjualanRoutes } from './routes/pembayaranPenjualan.js';
+import { pembayaranTokoRoutes } from './routes/pembayaranToko.js';
+import { dashboardRoutes } from './routes/dashboard.js';
 
 const app = new Elysia({ adapter: node() })
   .use(
