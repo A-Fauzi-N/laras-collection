@@ -3,11 +3,11 @@
     <!-- Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-          <TagsIcon class="w-7 h-7 sm:w-8 sm:h-8 text-pink-400" />
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-3">
+          <TagsIcon class="w-7 h-7 sm:w-8 sm:h-8 text-pink-600" />
           <span>Master Jenis Barang & Harga</span>
         </h1>
-        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+        <p class="text-slate-600 text-xs sm:text-sm mt-1">
           Kelola katalog jenis barang dan tetapkan harga default yang terisi otomatis pada form penjualan.
         </p>
       </div>
@@ -16,17 +16,17 @@
     <!-- Layout Grid: Form (Left/Top) and Table/Cards (Right/Bottom) -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
       <!-- Form Input / Edit Jenis Barang -->
-      <div class="glass-card rounded-2xl p-4 sm:p-6 border border-pink-500/30 shadow-xl h-fit">
-        <h2 class="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-slate-800 pb-3">
-          <PlusCircleIcon v-if="!editingId" class="w-5 h-5 text-pink-400" />
-          <PencilIcon v-else class="w-5 h-5 text-amber-400" />
+      <div class="glass-card rounded-2xl p-4 sm:p-6 border border-pink-200 shadow-xl h-fit">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-pink-200 pb-3">
+          <PlusCircleIcon v-if="!editingId" class="w-5 h-5 text-pink-600" />
+          <PencilIcon v-else class="w-5 h-5 text-amber-600" />
           <span>{{ editingId ? 'Edit Jenis Barang' : 'Tambah Jenis Barang Baru' }}</span>
         </h2>
 
         <form @submit.prevent="submitForm" class="space-y-4">
           <div>
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-              Nama Jenis Barang <span class="text-rose-400">*</span>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+              Nama Jenis Barang <span class="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -38,8 +38,8 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-              Harga Default Satuan (Rp) <span class="text-rose-400">*</span>
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+              Harga Default Satuan (Rp) <span class="text-rose-500">*</span>
             </label>
             <div class="relative">
               <span class="absolute left-3 top-2.5 text-slate-400 font-semibold text-sm">Rp</span>
@@ -48,7 +48,7 @@
                 v-model.number="form.harga_default"
                 required
                 min="1"
-                class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm font-semibold text-pink-300"
+                class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm font-bold text-pink-700"
                 placeholder="100000"
               />
             </div>
@@ -56,7 +56,7 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
               Deskripsi / Catatan (Opsional)
             </label>
             <textarea
@@ -72,7 +72,7 @@
               v-if="editingId"
               type="button"
               @click="cancelEdit"
-              class="w-1/2 py-2.5 px-4 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 transition font-medium text-sm"
+              class="w-1/2 py-2.5 px-4 rounded-xl border border-pink-200 text-slate-700 hover:bg-pink-50 transition font-medium text-sm"
             >
               Batal Edit
             </button>
@@ -94,22 +94,22 @@
       </div>
 
       <!-- Table / Cards Master Jenis Barang -->
-      <div class="lg:col-span-2 glass-card rounded-2xl border border-pink-500/20 overflow-hidden shadow-xl">
-        <div class="p-4 border-b border-slate-800 flex justify-between items-center">
-          <h3 class="font-bold text-white text-base">Daftar Master Jenis Barang</h3>
-          <span class="text-xs text-slate-400 font-mono">Total: {{ masterItems.length }} Item</span>
+      <div class="lg:col-span-2 glass-card rounded-2xl border border-pink-200 overflow-hidden shadow-xl">
+        <div class="p-4 border-b border-pink-200 flex justify-between items-center bg-pink-50/50">
+          <h3 class="font-bold text-slate-900 text-base">Daftar Master Jenis Barang</h3>
+          <span class="text-xs text-slate-500 font-mono">Total: {{ masterItems.length }} Item</span>
         </div>
 
         <!-- Mobile Card View (< sm) -->
         <div class="block sm:hidden p-4 space-y-3">
-          <div v-if="loadingTable" class="text-center py-12 text-slate-400">
-            <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-400 mb-2" />
+          <div v-if="loadingTable" class="text-center py-12 text-slate-500">
+            <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-600 mb-2" />
             <span>Memuat data master barang...</span>
           </div>
 
-          <div v-else-if="masterItems.length === 0" class="text-center py-12 text-slate-400">
-            <InboxIcon class="w-10 h-10 mx-auto text-slate-600 mb-2" />
-            <p class="font-medium text-slate-300">Belum ada data master barang.</p>
+          <div v-else-if="masterItems.length === 0" class="text-center py-12 text-slate-500">
+            <InboxIcon class="w-10 h-10 mx-auto text-slate-400 mb-2" />
+            <p class="font-medium text-slate-600">Belum ada data master barang.</p>
           </div>
 
           <div 
@@ -117,31 +117,31 @@
             v-for="(item, idx) in masterItems" 
             :key="item.id"
             :class="[
-              'bg-slate-900/90 rounded-xl p-4 border border-slate-800 space-y-2',
-              editingId === item.id ? 'border-pink-500 bg-pink-500/10' : ''
+              'bg-white rounded-xl p-4 border border-pink-200 shadow-sm space-y-2',
+              editingId === item.id ? 'border-pink-500 ring-2 ring-pink-300' : ''
             ]"
           >
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[11px] font-mono text-slate-500 font-bold mr-2">#{{ idx + 1 }}</span>
-                <span class="font-bold text-white text-sm">{{ item.nama_jenis }}</span>
+                <span class="text-[11px] font-mono text-slate-400 font-bold mr-2">#{{ idx + 1 }}</span>
+                <span class="font-bold text-slate-900 text-sm">{{ item.nama_jenis }}</span>
               </div>
-              <span class="font-mono font-bold text-pink-300 text-sm">Rp {{ formatNumber(item.harga_default) }}</span>
+              <span class="font-mono font-bold text-pink-700 text-sm">Rp {{ formatNumber(item.harga_default) }}</span>
             </div>
 
-            <p class="text-xs text-slate-400">{{ item.deskripsi || 'Tidak ada deskripsi' }}</p>
+            <p class="text-xs text-slate-600">{{ item.deskripsi || 'Tidak ada deskripsi' }}</p>
 
-            <div class="flex justify-end gap-2 pt-2 border-t border-slate-800/80">
+            <div class="flex justify-end gap-2 pt-2 border-t border-pink-100">
               <button
                 @click="startEdit(item)"
-                class="px-3 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 transition text-xs font-semibold flex items-center gap-1"
+                class="px-3 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 transition text-xs font-semibold flex items-center gap-1"
               >
                 <PencilIcon class="w-3.5 h-3.5" />
                 <span>Edit</span>
               </button>
               <button
                 @click="confirmDelete(item.id)"
-                class="px-3 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition text-xs font-semibold flex items-center gap-1"
+                class="px-3 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition text-xs font-semibold flex items-center gap-1"
               >
                 <Trash2Icon class="w-3.5 h-3.5" />
                 <span>Hapus</span>
@@ -154,7 +154,7 @@
         <div class="hidden sm:block overflow-x-auto">
           <table class="w-full text-left text-sm border-collapse">
             <thead>
-              <tr class="bg-slate-800/80 text-slate-300 text-xs uppercase tracking-wider border-b border-slate-700/70">
+              <tr class="bg-pink-100/70 text-slate-700 text-xs uppercase tracking-wider border-b border-pink-200">
                 <th class="py-3.5 px-4 font-semibold">No</th>
                 <th class="py-3.5 px-4 font-semibold">Nama Jenis Barang</th>
                 <th class="py-3.5 px-4 font-semibold text-right">Harga Default</th>
@@ -162,18 +162,18 @@
                 <th class="py-3.5 px-4 font-semibold text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-800/60">
+            <tbody class="divide-y divide-pink-100">
               <tr v-if="loadingTable" class="text-center">
-                <td colspan="5" class="py-12 text-slate-400">
-                  <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-400 mb-2" />
+                <td colspan="5" class="py-12 text-slate-500">
+                  <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-600 mb-2" />
                   <span>Memuat data master barang...</span>
                 </td>
               </tr>
 
               <tr v-else-if="masterItems.length === 0" class="text-center">
-                <td colspan="5" class="py-12 text-slate-400">
-                  <InboxIcon class="w-10 h-10 mx-auto text-slate-600 mb-2" />
-                  <p class="font-medium text-slate-300">Belum ada data master barang.</p>
+                <td colspan="5" class="py-12 text-slate-500">
+                  <InboxIcon class="w-10 h-10 mx-auto text-slate-400 mb-2" />
+                  <p class="font-medium text-slate-600">Belum ada data master barang.</p>
                 </td>
               </tr>
 
@@ -181,21 +181,21 @@
                 v-for="(item, idx) in masterItems" 
                 :key="item.id"
                 :class="[
-                  'hover:bg-slate-800/40 transition',
-                  editingId === item.id ? 'bg-pink-500/15 border-l-4 border-pink-500' : ''
+                  'hover:bg-pink-50/50 transition',
+                  editingId === item.id ? 'bg-pink-100/80 border-l-4 border-pink-500' : ''
                 ]"
               >
-                <td class="py-3.5 px-4 font-mono text-slate-500 text-xs">{{ idx + 1 }}</td>
+                <td class="py-3.5 px-4 font-mono text-slate-400 text-xs">{{ idx + 1 }}</td>
                 
                 <td class="py-3.5 px-4">
-                  <div class="font-bold text-white">{{ item.nama_jenis }}</div>
+                  <div class="font-bold text-slate-900">{{ item.nama_jenis }}</div>
                 </td>
 
-                <td class="py-3.5 px-4 text-right font-mono font-bold text-pink-300 text-sm">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-pink-700 text-sm">
                   Rp {{ formatNumber(item.harga_default) }}
                 </td>
 
-                <td class="py-3.5 px-4 text-xs text-slate-400 truncate max-w-[200px]" :title="item.deskripsi">
+                <td class="py-3.5 px-4 text-xs text-slate-600 truncate max-w-[200px]" :title="item.deskripsi">
                   {{ item.deskripsi || '-' }}
                 </td>
 
@@ -204,14 +204,14 @@
                     <button
                       @click="startEdit(item)"
                       title="Edit Item"
-                      class="p-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 transition"
+                      class="p-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 transition"
                     >
                       <PencilIcon class="w-4 h-4" />
                     </button>
                     <button
                       @click="confirmDelete(item.id)"
                       title="Hapus Item"
-                      class="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition"
+                      class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition"
                     >
                       <Trash2Icon class="w-4 h-4" />
                     </button>

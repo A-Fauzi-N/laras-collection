@@ -1,48 +1,48 @@
 <template>
-  <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in overflow-y-auto">
-    <div class="glass-card w-full max-w-lg rounded-2xl p-5 sm:p-6 shadow-2xl border border-pink-500/30 relative max-h-[90vh] overflow-y-auto my-auto">
+  <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in overflow-y-auto">
+    <div class="glass-card w-full max-w-lg rounded-2xl p-5 sm:p-6 shadow-2xl border border-pink-200 bg-white/95 text-slate-800 relative max-h-[90vh] overflow-y-auto my-auto">
       <!-- Close Button -->
       <button 
         @click="closeModal" 
-        class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition"
+        class="absolute top-4 right-4 text-slate-500 hover:text-pink-600 p-2 rounded-lg hover:bg-pink-50 transition"
       >
         <XIcon class="w-5 h-5" />
       </button>
 
       <div class="flex items-center gap-3 mb-5">
-        <div class="p-3 bg-pink-500/10 text-pink-400 rounded-xl border border-pink-500/20">
+        <div class="p-3 bg-pink-100 text-pink-600 rounded-xl border border-pink-200">
           <CreditCardIcon class="w-6 h-6" />
         </div>
         <div>
-          <h3 class="text-lg sm:text-xl font-bold text-white">Catat Pembayaran Customer</h3>
-          <p class="text-xs sm:text-sm text-slate-400">Kode: <span class="font-mono text-pink-400 font-semibold">{{ sale?.kode_transaksi }}</span></p>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900">Catat Pembayaran Customer</h3>
+          <p class="text-xs sm:text-sm text-slate-600">Kode: <span class="font-mono text-pink-600 font-bold">{{ sale?.kode_transaksi }}</span></p>
         </div>
       </div>
 
       <!-- Sale Info Summary -->
-      <div v-if="sale" class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-2 text-xs sm:text-sm mb-5">
+      <div v-if="sale" class="bg-pink-50/70 p-4 rounded-xl border border-pink-200 space-y-2 text-xs sm:text-sm mb-5">
         <div class="flex justify-between">
-          <span class="text-slate-400">Pembeli:</span>
-          <span class="font-medium text-slate-200">{{ sale.nama }} ({{ sale.nama_tiktok }})</span>
+          <span class="text-slate-600">Pembeli:</span>
+          <span class="font-bold text-slate-900">{{ sale.nama }} ({{ sale.nama_tiktok }})</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">Total Transaksi:</span>
-          <span class="font-bold text-white">Rp {{ formatNumber(sale.total_harga) }}</span>
+          <span class="text-slate-600">Total Transaksi:</span>
+          <span class="font-bold text-slate-900">Rp {{ formatNumber(sale.total_harga) }}</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-slate-400">Total Terbayar:</span>
-          <span class="font-semibold text-pink-400">Rp {{ formatNumber(sale.total_terbayar) }}</span>
+          <span class="text-slate-600">Total Terbayar:</span>
+          <span class="font-bold text-pink-600">Rp {{ formatNumber(sale.total_terbayar) }}</span>
         </div>
-        <div class="flex justify-between border-t border-slate-800 pt-2">
-          <span class="text-slate-400 font-medium">Sisa Tagihan:</span>
-          <span class="font-bold text-amber-400">Rp {{ formatNumber(sale.sisa_pembayaran) }}</span>
+        <div class="flex justify-between border-t border-pink-200 pt-2">
+          <span class="text-slate-700 font-medium">Sisa Tagihan:</span>
+          <span class="font-bold text-amber-700">Rp {{ formatNumber(sale.sisa_pembayaran) }}</span>
         </div>
       </div>
 
       <!-- Form Pembayaran -->
       <form @submit.prevent="submitPayment" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
             Jumlah Pembayaran (Rp)
           </label>
           <div class="relative">
@@ -52,7 +52,7 @@
               v-model.number="jumlahBayar"
               :max="sale?.sisa_pembayaran"
               required
-              class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl font-semibold text-base sm:text-lg text-pink-300 placeholder-slate-500"
+              class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl font-bold text-base sm:text-lg text-pink-700 placeholder-slate-400"
               placeholder="0"
             />
           </div>
@@ -61,7 +61,7 @@
             <button 
               type="button" 
               @click="jumlahBayar = Number(sale?.sisa_pembayaran || 0)"
-              class="text-[11px] sm:text-xs text-pink-400 hover:underline font-medium"
+              class="text-[11px] sm:text-xs text-pink-600 hover:underline font-bold"
             >
               Bayar Lunas (Pas)
             </button>
@@ -69,10 +69,10 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
             Metode Pembayaran
           </label>
-          <select v-model="metodePembayaran" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200">
+          <select v-model="metodePembayaran" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800">
             <option value="Transfer Bank">Transfer Bank</option>
             <option value="Transfer QRIS">Transfer QRIS</option>
             <option value="Cash / Tunai">Cash / Tunai</option>
@@ -81,13 +81,13 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
             Catatan / Keterangan (Opsional)
           </label>
           <input
             type="text"
             v-model="catatan"
-            class="glass-input w-full px-4 py-2.5 rounded-xl text-sm text-slate-200"
+            class="glass-input w-full px-4 py-2.5 rounded-xl text-sm text-slate-800"
             placeholder="misal: Cicilan ke-2 / Bukti Transfer terverifikasi"
           />
         </div>
@@ -96,7 +96,7 @@
           <button
             type="button"
             @click="closeModal"
-            class="w-1/2 py-2.5 px-4 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 transition font-medium text-sm"
+            class="w-1/2 py-2.5 px-4 rounded-xl border border-pink-200 text-slate-700 hover:bg-pink-50 transition font-medium text-sm"
           >
             Batal
           </button>

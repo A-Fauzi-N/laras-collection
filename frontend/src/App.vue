@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-['Inter',sans-serif]">
+  <div class="min-h-screen bg-[#fdf4f8] text-slate-800 flex flex-col font-['Inter',sans-serif]">
     <!-- Navbar Navigation Header -->
-    <header class="sticky top-0 z-40 border-b border-pink-900/30 bg-slate-900/90 backdrop-blur-md">
+    <header class="sticky top-0 z-40 border-b border-pink-200/80 bg-white/85 backdrop-blur-md shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Logo Brand -->
         <router-link to="/" class="flex items-center gap-3 group">
@@ -9,8 +9,8 @@
             <StoreIcon class="w-5 h-5" />
           </div>
           <div class="flex flex-col">
-            <span class="font-extrabold text-lg text-white tracking-tight leading-tight">Laras's Collection</span>
-            <span class="text-[10px] font-semibold text-pink-400 tracking-wide">Pakaian Online Laras</span>
+            <span class="font-extrabold text-lg text-slate-900 tracking-tight leading-tight">Laras's Collection</span>
+            <span class="text-[10px] font-bold text-pink-600 tracking-wide">Pakaian Online Laras</span>
           </div>
         </router-link>
 
@@ -18,37 +18,37 @@
         <nav class="hidden md:flex items-center gap-2">
           <router-link
             to="/"
-            exact-active-class="bg-pink-500/15 text-pink-300 border-pink-500/40 shadow-sm"
-            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/80 border border-transparent transition flex items-center gap-2"
+            exact-active-class="bg-pink-100/90 text-pink-700 border-pink-300 shadow-sm"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-pink-600 hover:bg-pink-50/80 border border-transparent transition flex items-center gap-2"
           >
-            <LayoutDashboardIcon class="w-4 h-4 text-pink-400" />
+            <LayoutDashboardIcon class="w-4 h-4 text-pink-500" />
             <span>Dashboard</span>
           </router-link>
 
           <router-link
             to="/penjualan"
-            active-class="bg-pink-500/15 text-pink-300 border-pink-500/40 shadow-sm"
-            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/80 border border-transparent transition flex items-center gap-2"
+            active-class="bg-pink-100/90 text-pink-700 border-pink-300 shadow-sm"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-pink-600 hover:bg-pink-50/80 border border-transparent transition flex items-center gap-2"
           >
-            <ShoppingBagIcon class="w-4 h-4 text-pink-400" />
+            <ShoppingBagIcon class="w-4 h-4 text-pink-500" />
             <span>Penjualan</span>
           </router-link>
 
           <router-link
             to="/pembayaran"
-            active-class="bg-pink-500/15 text-pink-300 border-pink-500/40 shadow-sm"
-            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/80 border border-transparent transition flex items-center gap-2"
+            active-class="bg-pink-100/90 text-pink-700 border-pink-300 shadow-sm"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-pink-600 hover:bg-pink-50/80 border border-transparent transition flex items-center gap-2"
           >
-            <CreditCardIcon class="w-4 h-4 text-pink-400" />
+            <CreditCardIcon class="w-4 h-4 text-pink-500" />
             <span>Pembayaran Toko</span>
           </router-link>
 
           <router-link
             to="/master-barang"
-            active-class="bg-pink-500/15 text-pink-300 border-pink-500/40 shadow-sm"
-            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/80 border border-transparent transition flex items-center gap-2"
+            active-class="bg-pink-100/90 text-pink-700 border-pink-300 shadow-sm"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-pink-600 hover:bg-pink-50/80 border border-transparent transition flex items-center gap-2"
           >
-            <TagsIcon class="w-4 h-4 text-pink-400" />
+            <TagsIcon class="w-4 h-4 text-pink-500" />
             <span>Master Barang</span>
           </router-link>
         </nav>
@@ -56,54 +56,54 @@
         <!-- Mobile Menu Hamburger Button -->
         <button
           @click="mobileMenuOpen = !mobileMenuOpen"
-          class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 transition"
+          class="md:hidden p-2 rounded-xl text-slate-600 hover:text-pink-600 hover:bg-pink-50 border border-pink-200 transition"
           aria-label="Toggle Mobile Menu"
         >
-          <MenuIcon v-if="!mobileMenuOpen" class="w-6 h-6 text-pink-400" />
-          <XIcon v-else class="w-6 h-6 text-rose-400" />
+          <MenuIcon v-if="!mobileMenuOpen" class="w-6 h-6 text-pink-500" />
+          <XIcon v-else class="w-6 h-6 text-rose-500" />
         </button>
       </div>
 
       <!-- Mobile Navigation Drawer / Dropdown -->
       <transition name="mobile-menu">
-        <div v-if="mobileMenuOpen" class="md:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-3 pb-4 space-y-2">
+        <div v-if="mobileMenuOpen" class="md:hidden border-t border-pink-200/80 bg-white/95 px-4 pt-3 pb-4 space-y-2 shadow-lg">
           <router-link
             to="/"
             @click="mobileMenuOpen = false"
-            exact-active-class="bg-pink-500/20 text-pink-300 border-pink-500/40"
-            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent transition flex items-center gap-3"
+            exact-active-class="bg-pink-100 text-pink-700 border-pink-300"
+            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-pink-600 hover:bg-pink-50 border border-transparent transition flex items-center gap-3"
           >
-            <LayoutDashboardIcon class="w-5 h-5 text-pink-400" />
+            <LayoutDashboardIcon class="w-5 h-5 text-pink-500" />
             <span>Dashboard Keuangan</span>
           </router-link>
 
           <router-link
             to="/penjualan"
             @click="mobileMenuOpen = false"
-            active-class="bg-pink-500/20 text-pink-300 border-pink-500/40"
-            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent transition flex items-center gap-3"
+            active-class="bg-pink-100 text-pink-700 border-pink-300"
+            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-pink-600 hover:bg-pink-50 border border-transparent transition flex items-center gap-3"
           >
-            <ShoppingBagIcon class="w-5 h-5 text-pink-400" />
+            <ShoppingBagIcon class="w-5 h-5 text-pink-500" />
             <span>Pencatatan Penjualan</span>
           </router-link>
 
           <router-link
             to="/pembayaran"
             @click="mobileMenuOpen = false"
-            active-class="bg-pink-500/20 text-pink-300 border-pink-500/40"
-            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent transition flex items-center gap-3"
+            active-class="bg-pink-100 text-pink-700 border-pink-300"
+            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-pink-600 hover:bg-pink-50 border border-transparent transition flex items-center gap-3"
           >
-            <CreditCardIcon class="w-5 h-5 text-pink-400" />
+            <CreditCardIcon class="w-5 h-5 text-pink-500" />
             <span>Pembayaran Baju Toko</span>
           </router-link>
 
           <router-link
             to="/master-barang"
             @click="mobileMenuOpen = false"
-            active-class="bg-pink-500/20 text-pink-300 border-pink-500/40"
-            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent transition flex items-center gap-3"
+            active-class="bg-pink-100 text-pink-700 border-pink-300"
+            class="w-full px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:text-pink-600 hover:bg-pink-50 border border-transparent transition flex items-center gap-3"
           >
-            <TagsIcon class="w-5 h-5 text-pink-400" />
+            <TagsIcon class="w-5 h-5 text-pink-500" />
             <span>Master Jenis Barang</span>
           </router-link>
         </div>
@@ -116,7 +116,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500 px-4">
+    <footer class="border-t border-pink-200/80 bg-white/70 py-6 text-center text-xs text-slate-500 px-4">
       <p>© 2026 Laras's Collection — Sistem Informasi Penjualan Pakaian Online Laras. Powered by Vue 3, ElysiaJS, & PostgreSQL.</p>
     </footer>
   </div>

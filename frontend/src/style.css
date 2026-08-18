@@ -3,21 +3,26 @@
 @tailwind utilities;
 
 .glass-card {
-  background: rgba(28, 25, 43, 0.75);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 114, 182, 0.15);
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.08), 0 8px 10px -6px rgba(236, 72, 153, 0.04);
 }
 
 .glass-input {
-  background: rgba(18, 15, 31, 0.65);
-  border: 1px solid rgba(244, 114, 182, 0.2);
-  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  color: #1e293b;
+}
+
+.glass-input::placeholder {
+  color: #94a3b8;
 }
 
 .glass-input:focus {
   outline: none;
   border-color: #ec4899;
-  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.25);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
 }
 
 /* Hide ugly native number input spin buttons (up/down arrows on numeric inputs) */
@@ -40,7 +45,7 @@ select {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23db2777'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
   background-position: right 0.75rem center !important;
   background-size: 1.25rem 1.25rem !important;
@@ -53,8 +58,8 @@ select::-ms-expand {
 }
 
 select option {
-  background-color: #0f172a !important;
-  color: #f8fafc !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
   padding: 8px 12px;
 }
 
@@ -64,12 +69,12 @@ select option {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #fdf2f8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #f472b6;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #ec4899;
 }
