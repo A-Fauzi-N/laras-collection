@@ -1,38 +1,38 @@
 <template>
-  <div class="space-y-8 pb-12">
+  <div class="space-y-6 md:space-y-8 pb-12">
     <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div>
-        <h1 class="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-          <ShoppingBagIcon class="w-8 h-8 text-emerald-400" />
-          Pencatatan Penjualan Multi-Item
+        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
+          <ShoppingBagIcon class="w-7 h-7 sm:w-8 sm:h-8 text-pink-400" />
+          <span>Pencatatan Penjualan Multi-Item</span>
         </h1>
-        <p class="text-slate-400 text-sm mt-1">
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
           Catat transaksi pembeli TikTok, alamat, dan pilihan multiple jenis barang dalam satu pesanan.
         </p>
       </div>
 
       <button 
         @click="showForm = !showForm"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold shadow-lg shadow-emerald-500/20 transition"
+        class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold shadow-lg shadow-pink-500/25 transition text-xs sm:text-sm"
       >
-        <PlusIcon v-if="!showForm" class="w-5 h-5" />
-        <ChevronUpIcon v-else class="w-5 h-5" />
+        <PlusIcon v-if="!showForm" class="w-4 h-4 sm:w-5 sm:h-5" />
+        <ChevronUpIcon v-else class="w-4 h-4 sm:w-5 sm:h-5" />
         <span>{{ showForm ? 'Sembunyikan Form' : '+ Transaksi Penjualan Baru' }}</span>
       </button>
     </div>
 
-    <!-- Form Input Penjualan (Tampilan Baru Multi-Item) -->
+    <!-- Form Input Penjualan (Multi-Item Design) -->
     <transition name="slide">
-      <div v-if="showForm" class="glass-card rounded-2xl p-6 border border-slate-700/60 shadow-xl space-y-6">
-        <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-          <FileTextIcon class="w-5 h-5 text-emerald-400" />
+      <div v-if="showForm" class="glass-card rounded-2xl p-4 sm:p-6 border border-pink-500/30 shadow-xl space-y-6">
+        <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+          <FileTextIcon class="w-5 h-5 text-pink-400" />
           Form Transaksi Penjualan Baru
         </h2>
 
-        <form @submit.prevent="submitPenjualan" class="space-y-6">
+        <form @submit.prevent="submitPenjualan" class="space-y-5 sm:space-y-6">
           <!-- Row 1: Nama Pembeli | Nama TikTok -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             <!-- Nama Pembeli -->
             <div>
               <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
@@ -80,36 +80,50 @@
           </div>
 
           <!-- Row 3: Section Multi Jenis Barang (+ Jenis Barang) -->
-          <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-4">
+          <div class="bg-slate-900/90 p-4 sm:p-5 rounded-2xl border border-pink-900/30 space-y-4">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
               <div class="flex items-center gap-2">
-                <PackageIcon class="w-5 h-5 text-emerald-400" />
-                <h3 class="font-bold text-white text-base">Daftar Pilihan Jenis Barang</h3>
+                <PackageIcon class="w-5 h-5 text-pink-400" />
+                <h3 class="font-bold text-white text-sm sm:text-base">Daftar Pilihan Jenis Barang</h3>
               </div>
               
               <!-- + Jenis Barang Button -->
               <button
                 type="button"
                 @click="addItemRow"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 border border-pink-500/40 text-xs font-bold transition"
               >
-                <PlusIcon class="w-4 h-4" />
-                <span>+ Tambah Jenis Barang</span>
+                <PlusIcon class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>+ Tambah Barang</span>
               </button>
             </div>
 
             <!-- List of Selected Items -->
             <div v-if="form.items.length === 0" class="text-center py-6 text-slate-500 text-xs font-medium">
-              Belum ada jenis barang yang dipilih. Klik <span class="text-emerald-400 font-semibold">+ Tambah Jenis Barang</span> di atas.
+              Belum ada jenis barang yang dipilih. Klik <span class="text-pink-400 font-semibold">+ Tambah Barang</span> di atas.
             </div>
 
             <div v-else class="space-y-3">
               <div 
                 v-for="(itemRow, idx) in form.items" 
                 :key="idx"
-                class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 hover:border-slate-700 transition"
+                class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 hover:border-pink-500/30 transition space-y-3 md:space-y-0 md:grid md:grid-cols-12 md:gap-3 md:items-center"
               >
-                <!-- Index badge -->
+                <!-- Mobile Item Sub-Header -->
+                <div class="flex md:hidden items-center justify-between border-b border-slate-800/80 pb-2">
+                  <span class="font-mono text-xs font-bold text-pink-400">Item #{{ idx + 1 }}</span>
+                  <button
+                    type="button"
+                    @click="removeItemRow(idx)"
+                    :disabled="form.items.length === 1"
+                    class="p-1 rounded bg-rose-500/10 text-rose-400 disabled:opacity-30 text-xs flex items-center gap-1"
+                  >
+                    <Trash2Icon class="w-3.5 h-3.5" />
+                    <span>Hapus</span>
+                  </button>
+                </div>
+
+                <!-- Index badge (Desktop) -->
                 <div class="hidden md:flex md:col-span-1 items-center justify-center font-mono text-xs text-slate-500 font-bold">
                   #{{ idx + 1 }}
                 </div>
@@ -130,25 +144,26 @@
                   </select>
                 </div>
 
-                <!-- Harga -->
-                <div class="md:col-span-3">
-                  <label class="block text-[11px] font-semibold text-slate-400 uppercase md:hidden mb-1">Harga (Rp)</label>
-                  <div class="relative">
-                    <span class="absolute left-2.5 top-2 text-slate-500 text-xs font-semibold">Rp</span>
-                    <input
-                      type="number"
-                      v-model.number="itemRow.harga"
-                      required
-                      class="glass-input w-full pl-8 pr-3 py-2 rounded-xl text-xs font-semibold text-slate-100"
-                      placeholder="0"
-                    />
+                <!-- Mobile 2-column grid for Harga & Pcs -->
+                <div class="grid grid-cols-2 gap-3 md:contents">
+                  <!-- Harga -->
+                  <div class="md:col-span-3">
+                    <label class="block text-[11px] font-semibold text-slate-400 uppercase mb-1">Harga Satuan</label>
+                    <div class="relative">
+                      <span class="absolute left-2.5 top-2 text-slate-500 text-xs font-semibold">Rp</span>
+                      <input
+                        type="number"
+                        v-model.number="itemRow.harga"
+                        required
+                        class="glass-input w-full pl-8 pr-3 py-2 rounded-xl text-xs font-semibold text-pink-300"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <!-- Pcs / Qty -->
-                <div class="md:col-span-2">
-                  <label class="block text-[11px] font-semibold text-slate-400 uppercase md:hidden mb-1">Pcs</label>
-                  <div class="relative">
+                  <!-- Pcs / Qty -->
+                  <div class="md:col-span-2">
+                    <label class="block text-[11px] font-semibold text-slate-400 uppercase mb-1">Jumlah Pcs</label>
                     <input
                       type="number"
                       v-model.number="itemRow.jumlah"
@@ -160,8 +175,8 @@
                   </div>
                 </div>
 
-                <!-- Action Remove -->
-                <div class="md:col-span-1 flex items-center justify-end md:justify-center">
+                <!-- Action Remove (Desktop) -->
+                <div class="hidden md:flex md:col-span-1 items-center justify-center">
                   <button
                     type="button"
                     @click="removeItemRow(idx)"
@@ -176,13 +191,13 @@
             </div>
 
             <!-- Grand Total Bar -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-slate-800">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-slate-800">
               <div class="text-xs text-slate-400">
                 Total item dipesan: <span class="font-bold text-white font-mono">{{ totalPcsCount }} pcs</span> ({{ form.items.length }} jenis)
               </div>
-              <div class="flex items-center gap-3">
+              <div class="w-full sm:w-auto flex items-center justify-between sm:justify-end gap-3">
                 <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Total Penjualan:</span>
-                <span class="text-xl font-bold text-emerald-400 font-mono bg-emerald-500/10 px-4 py-1.5 rounded-xl border border-emerald-500/30">
+                <span class="text-lg sm:text-xl font-bold text-pink-400 font-mono bg-pink-500/10 px-4 py-1.5 rounded-xl border border-pink-500/30">
                   Rp {{ formatNumber(calculatedTotal) }}
                 </span>
               </div>
@@ -190,7 +205,7 @@
           </div>
 
           <!-- Row 4: DP Pembayaran Awal & Metode -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 pt-2">
             <!-- DP Pembayaran Awal -->
             <div>
               <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
@@ -201,7 +216,7 @@
                 <input
                   type="number"
                   v-model.number="form.dp_awal"
-                  class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm font-semibold text-emerald-400"
+                  class="glass-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm font-semibold text-pink-300"
                   placeholder="0 (jika belum bayar)"
                 />
               </div>
@@ -226,14 +241,14 @@
             <button
               type="button"
               @click="resetForm"
-              class="px-5 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 transition text-sm font-medium"
+              class="w-1/2 sm:w-auto px-5 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 transition text-sm font-medium"
             >
               Reset Form
             </button>
             <button
               type="submit"
               :disabled="loadingSubmit"
-              class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold text-sm shadow-lg shadow-emerald-500/20 flex items-center gap-2"
+              class="w-1/2 sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold text-sm shadow-lg shadow-pink-500/25 flex items-center justify-center gap-2"
             >
               <Loader2Icon v-if="loadingSubmit" class="w-4 h-4 animate-spin" />
               <span>Simpan Penjualan</span>
@@ -244,10 +259,10 @@
     </transition>
 
     <!-- Table Header Controls (Filter & Search) -->
-    <div class="glass-card rounded-2xl p-4 border border-slate-700/60 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="glass-card rounded-2xl p-4 border border-pink-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
       <!-- Search Input -->
       <div class="relative w-full md:w-80">
-        <SearchIcon class="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
+        <SearchIcon class="w-4 h-4 absolute left-3.5 top-3 text-pink-400" />
         <input
           type="text"
           v-model="searchQuery"
@@ -257,15 +272,15 @@
       </div>
 
       <!-- Filter Status Pembayaran -->
-      <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto">
-        <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider mr-1">Status:</span>
+      <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+        <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider mr-1 shrink-0">Status:</span>
         <button
           v-for="st in ['Semua', 'Belum Lunas', 'DP', 'Lunas']"
           :key="st"
           @click="statusFilter = st"
           :class="[
-            'px-3 py-1.5 rounded-lg text-xs font-semibold transition',
-            statusFilter === st ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
+            'px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0',
+            statusFilter === st ? 'bg-pink-500 text-white shadow-md shadow-pink-500/25' : 'bg-slate-800/80 text-slate-400 hover:bg-slate-700 hover:text-white'
           ]"
         >
           {{ st }}
@@ -273,9 +288,100 @@
       </div>
     </div>
 
-    <!-- Sales Table -->
-    <div class="glass-card rounded-2xl border border-slate-700/60 overflow-hidden shadow-xl">
-      <div class="overflow-x-auto">
+    <!-- Sales Table / Mobile View Container -->
+    <div class="glass-card rounded-2xl border border-pink-500/20 overflow-hidden shadow-xl">
+      <!-- Mobile Card List View (Visible on HP screen < md) -->
+      <div class="block md:hidden p-4 space-y-4">
+        <div v-if="loadingTable" class="text-center py-12 text-slate-400">
+          <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-400 mb-2" />
+          <span>Memuat data penjualan...</span>
+        </div>
+
+        <div v-else-if="filteredPenjualan.length === 0" class="text-center py-12 text-slate-400">
+          <InboxIcon class="w-10 h-10 mx-auto text-slate-600 mb-2" />
+          <p class="font-medium text-slate-300">Belum ada transaksi penjualan yang sesuai.</p>
+        </div>
+
+        <div 
+          v-else
+          v-for="item in filteredPenjualan" 
+          :key="item.id"
+          class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 space-y-3"
+        >
+          <div class="flex justify-between items-start border-b border-slate-800 pb-2">
+            <div>
+              <span class="font-mono text-xs font-bold text-pink-400 block">{{ item.kode_transaksi }}</span>
+              <span class="text-[11px] text-slate-500">{{ formatDate(item.created_at) }}</span>
+            </div>
+            <span
+              :class="[
+                'px-2.5 py-0.5 rounded-full text-[11px] font-semibold border',
+                item.status_pembayaran === 'Lunas' ? 'bg-pink-500/15 text-pink-300 border-pink-500/30' :
+                item.status_pembayaran === 'DP' ? 'bg-amber-500/15 text-amber-300 border-amber-500/30' :
+                'bg-rose-500/15 text-rose-300 border-rose-500/30'
+              ]"
+            >
+              {{ item.status_pembayaran }}
+            </span>
+          </div>
+
+          <div class="space-y-1">
+            <div class="font-bold text-white text-sm flex items-center justify-between">
+              <span>{{ item.nama }}</span>
+              <span class="text-xs font-semibold text-pink-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">@{{ item.nama_tiktok }}</span>
+            </div>
+            <div class="text-xs text-slate-400 line-clamp-2">{{ item.alamat }}</div>
+          </div>
+
+          <!-- Items Ordered list -->
+          <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800/80 space-y-1 text-xs">
+            <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Rincian Barang:</div>
+            <div v-if="item.items && item.items.length > 0" class="space-y-1">
+              <div v-for="line in item.items" :key="line.id" class="flex justify-between items-center text-slate-200">
+                <span>{{ line.jenisBarang?.nama_jenis || 'Barang' }}</span>
+                <span class="font-mono text-pink-300 text-[11px]">Rp {{ formatNumber(line.harga) }} × {{ line.jumlah }}</span>
+              </div>
+            </div>
+            <div v-else class="text-slate-300">
+              {{ item.jenisBarang?.nama_jenis || 'Barang' }} (x{{ item.jumlah }})
+            </div>
+          </div>
+
+          <!-- Amount summary -->
+          <div class="flex justify-between items-center text-xs pt-1 border-t border-slate-800">
+            <div>
+              <span class="text-slate-400">Total: </span>
+              <span class="font-mono font-bold text-white text-sm">Rp {{ formatNumber(item.total_harga) }}</span>
+            </div>
+            <div class="text-right font-mono">
+              <span class="text-pink-400 font-semibold block text-[11px]">Bayar: Rp {{ formatNumber(item.total_terbayar) }}</span>
+              <span v-if="Number(item.sisa_pembayaran) > 0" class="text-amber-400 text-[11px] block">Sisa: Rp {{ formatNumber(item.sisa_pembayaran) }}</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex justify-end gap-2 pt-2 border-t border-slate-800/60">
+            <button
+              v-if="item.status_pembayaran !== 'Lunas'"
+              @click="openPaymentModal(item)"
+              class="px-3 py-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-semibold text-xs border border-pink-500/40 flex items-center gap-1.5"
+            >
+              <CreditCardIcon class="w-3.5 h-3.5" />
+              <span>Bayar Pelunasan</span>
+            </button>
+            <button
+              @click="confirmDelete(item.id)"
+              class="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 text-xs flex items-center gap-1"
+            >
+              <Trash2Icon class="w-4 h-4" />
+              <span class="sr-only">Hapus</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Table View (Visible on Desktop >= md) -->
+      <div class="hidden md:block overflow-x-auto">
         <table class="w-full text-left text-sm border-collapse">
           <thead>
             <tr class="bg-slate-800/80 text-slate-300 text-xs uppercase tracking-wider border-b border-slate-700/70">
@@ -292,7 +398,7 @@
           <tbody class="divide-y divide-slate-800/60">
             <tr v-if="loadingTable" class="text-center">
               <td colspan="8" class="py-12 text-slate-400">
-                <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-emerald-400 mb-2" />
+                <Loader2Icon class="w-6 h-6 animate-spin mx-auto text-pink-400 mb-2" />
                 <span>Memuat data penjualan...</span>
               </td>
             </tr>
@@ -311,7 +417,7 @@
             >
               <!-- Transaksi -->
               <td class="py-3.5 px-4 font-mono text-xs">
-                <div class="font-semibold text-emerald-400">{{ item.kode_transaksi }}</div>
+                <div class="font-semibold text-pink-400">{{ item.kode_transaksi }}</div>
                 <div class="text-slate-500 text-[11px]">{{ formatDate(item.created_at) }}</div>
               </td>
 
@@ -323,7 +429,7 @@
 
               <!-- TikTok Username -->
               <td class="py-3.5 px-4">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800 text-teal-300 font-medium text-xs border border-slate-700">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800 text-pink-300 font-medium text-xs border border-slate-700">
                   {{ item.nama_tiktok }}
                 </span>
               </td>
@@ -337,7 +443,7 @@
                     class="text-xs text-slate-200 flex items-center justify-between gap-2 bg-slate-900/60 px-2 py-1 rounded border border-slate-800"
                   >
                     <span>{{ line.jenisBarang?.nama_jenis || 'Barang' }}</span>
-                    <span class="font-mono text-emerald-400 font-semibold text-[11px]">Rp {{ formatNumber(line.harga) }} × {{ line.jumlah }}</span>
+                    <span class="font-mono text-pink-300 font-semibold text-[11px]">Rp {{ formatNumber(line.harga) }} × {{ line.jumlah }}</span>
                   </div>
                 </div>
                 <div v-else class="text-xs text-slate-200">
@@ -352,7 +458,7 @@
 
               <!-- Terbayar / Sisa -->
               <td class="py-3.5 px-4 text-right font-mono text-xs">
-                <div class="text-emerald-400 font-semibold">Bayar: Rp {{ formatNumber(item.total_terbayar) }}</div>
+                <div class="text-pink-400 font-semibold">Bayar: Rp {{ formatNumber(item.total_terbayar) }}</div>
                 <div v-if="Number(item.sisa_pembayaran) > 0" class="text-amber-400">Sisa: Rp {{ formatNumber(item.sisa_pembayaran) }}</div>
                 <div v-else class="text-slate-500">Lunas</div>
               </td>
@@ -362,9 +468,9 @@
                 <span
                   :class="[
                     'inline-block px-3 py-1 rounded-full text-xs font-semibold border',
-                    item.status_pembayaran === 'Lunas' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' :
-                    item.status_pembayaran === 'DP' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' :
-                    'bg-rose-500/10 text-rose-400 border-rose-500/30'
+                    item.status_pembayaran === 'Lunas' ? 'bg-pink-500/15 text-pink-300 border-pink-500/30' :
+                    item.status_pembayaran === 'DP' ? 'bg-amber-500/15 text-amber-300 border-amber-500/30' :
+                    'bg-rose-500/15 text-rose-300 border-rose-500/30'
                   ]"
                 >
                   {{ item.status_pembayaran }}
@@ -378,7 +484,7 @@
                     v-if="item.status_pembayaran !== 'Lunas'"
                     @click="openPaymentModal(item)"
                     title="Catat Pembayaran / Pelunasan"
-                    class="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-semibold text-xs border border-emerald-500/40 transition flex items-center gap-1"
+                    class="px-3 py-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-semibold text-xs border border-pink-500/40 transition flex items-center gap-1"
                   >
                     <CreditCardIcon class="w-3.5 h-3.5" />
                     <span>Bayar</span>
