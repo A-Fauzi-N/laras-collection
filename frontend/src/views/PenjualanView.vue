@@ -24,8 +24,8 @@
 
     <!-- Form Input Penjualan (Multi-Item Design) -->
     <transition name="slide">
-      <div v-if="showForm" class="glass-card rounded-2xl p-4 sm:p-6 border border-pink-200 shadow-xl space-y-6">
-        <h2 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-pink-200 pb-3">
+      <div v-if="showForm" class="glass-card rounded-2xl p-4 sm:p-6 border-2 border-pink-300 shadow-xl space-y-6">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2 border-b-2 border-pink-200 pb-3">
           <FileTextIcon class="w-5 h-5 text-pink-600" />
           Form Transaksi Penjualan Baru
         </h2>
@@ -80,8 +80,8 @@
           </div>
 
           <!-- Row 3: Section Multi Jenis Barang (+ Jenis Barang) -->
-          <div class="bg-pink-50/70 p-4 sm:p-5 rounded-2xl border border-pink-200 space-y-4">
-            <div class="flex items-center justify-between border-b border-pink-200 pb-3">
+          <div class="bg-pink-50/70 p-4 sm:p-5 rounded-2xl border-2 border-pink-300 space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-pink-200 pb-3">
               <div class="flex items-center gap-2">
                 <PackageIcon class="w-5 h-5 text-pink-600" />
                 <h3 class="font-bold text-slate-900 text-sm sm:text-base">Daftar Pilihan Jenis Barang</h3>
@@ -91,7 +91,7 @@
               <button
                 type="button"
                 @click="addItemRow"
-                class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-white hover:bg-pink-100 text-pink-700 border border-pink-300 text-xs font-bold transition shadow-sm"
+                class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-white hover:bg-pink-100 text-pink-700 border-2 border-pink-300 text-xs font-bold transition shadow-sm"
               >
                 <PlusIcon class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-600" />
                 <span>+ Tambah Barang</span>
@@ -107,7 +107,7 @@
               <div 
                 v-for="(itemRow, idx) in form.items" 
                 :key="idx"
-                class="bg-white p-3.5 rounded-xl border border-pink-200/80 hover:border-pink-400 transition space-y-3 md:space-y-0 md:grid md:grid-cols-12 md:gap-3 md:items-center shadow-sm"
+                class="bg-white p-3.5 rounded-xl border-2 border-pink-200 hover:border-pink-400 transition space-y-3 md:space-y-0 md:grid md:grid-cols-12 md:gap-3 md:items-center shadow-sm"
               >
                 <!-- Mobile Item Sub-Header -->
                 <div class="flex md:hidden items-center justify-between border-b border-pink-100 pb-2">
@@ -191,13 +191,13 @@
             </div>
 
             <!-- Grand Total Bar -->
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-pink-200">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t-2 border-pink-200">
               <div class="text-xs text-slate-600">
                 Total item dipesan: <span class="font-bold text-slate-900 font-mono">{{ totalPcsCount }} pcs</span> ({{ form.items.length }} jenis)
               </div>
               <div class="w-full sm:w-auto flex items-center justify-between sm:justify-end gap-3">
                 <span class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Total Penjualan:</span>
-                <span class="text-lg sm:text-xl font-bold text-pink-700 font-mono bg-pink-100 px-4 py-1.5 rounded-xl border border-pink-300 shadow-sm">
+                <span class="text-lg sm:text-xl font-bold text-pink-700 font-mono bg-pink-100 px-4 py-1.5 rounded-xl border-2 border-pink-300 shadow-sm">
                   Rp {{ formatNumber(calculatedTotal) }}
                 </span>
               </div>
@@ -237,11 +237,11 @@
           </div>
 
           <!-- Submit Controls -->
-          <div class="flex justify-end gap-3 border-t border-pink-200 pt-4">
+          <div class="flex justify-end gap-3 border-t-2 border-pink-200 pt-4">
             <button
               type="button"
               @click="resetForm"
-              class="w-1/2 sm:w-auto px-5 py-2.5 rounded-xl border border-pink-200 text-slate-700 hover:bg-pink-50 transition text-sm font-medium"
+              class="w-1/2 sm:w-auto px-5 py-2.5 rounded-xl border-2 border-pink-300 text-slate-700 hover:bg-pink-50 transition text-sm font-medium"
             >
               Reset Form
             </button>
@@ -259,7 +259,7 @@
     </transition>
 
     <!-- Table Header Controls (Filter & Search) -->
-    <div class="glass-card rounded-2xl p-4 border border-pink-200 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="glass-card rounded-2xl p-4 border-2 border-pink-300 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
       <!-- Search Input -->
       <div class="relative w-full md:w-80">
         <SearchIcon class="w-4 h-4 absolute left-3.5 top-3 text-pink-500" />
@@ -279,8 +279,8 @@
           :key="st"
           @click="statusFilter = st"
           :class="[
-            'px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 border',
-            statusFilter === st ? 'bg-pink-500 text-white border-pink-500 shadow-md shadow-pink-500/25' : 'bg-white text-slate-600 hover:bg-pink-50 border-pink-200'
+            'px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 border-2',
+            statusFilter === st ? 'bg-pink-500 text-white border-pink-500 shadow-md shadow-pink-500/25' : 'bg-white text-slate-600 hover:bg-pink-50 border-pink-300'
           ]"
         >
           {{ st }}
@@ -289,7 +289,7 @@
     </div>
 
     <!-- Sales Table / Mobile View Container -->
-    <div class="glass-card rounded-2xl border border-pink-200 overflow-hidden shadow-xl">
+    <div class="glass-card rounded-2xl border-2 border-pink-300 overflow-hidden shadow-xl">
       <!-- Mobile Card List View (Visible on HP screen < md) -->
       <div class="block md:hidden p-4 space-y-4">
         <div v-if="loadingTable" class="text-center py-12 text-slate-500">

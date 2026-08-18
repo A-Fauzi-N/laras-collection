@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 114, 182, 0.25);
-  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.08), 0 8px 10px -6px rgba(236, 72, 153, 0.04);
+  border: 1.5px solid #f472b6;
+  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.15), 0 4px 10px -2px rgba(219, 39, 119, 0.08);
 }
 
 .glass-input {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(244, 114, 182, 0.35);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1.5px solid #f472b6;
   color: #1e293b;
 }
 
@@ -21,8 +21,8 @@
 
 .glass-input:focus {
   outline: none;
-  border-color: #ec4899;
-  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+  border-color: #db2777;
+  box-shadow: 0 0 0 3.5px rgba(219, 39, 119, 0.25);
 }
 
 /* Hide ugly native number input spin buttons (up/down arrows on numeric inputs) */

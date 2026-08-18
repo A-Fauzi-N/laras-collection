@@ -16,8 +16,8 @@
     <!-- Layout Grid: Form (Left/Top) and Table/Cards (Right/Bottom) -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
       <!-- Form Input / Edit Jenis Barang -->
-      <div class="glass-card rounded-2xl p-4 sm:p-6 border border-pink-200 shadow-xl h-fit">
-        <h2 class="text-base sm:text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-pink-200 pb-3">
+      <div class="glass-card rounded-2xl p-4 sm:p-6 border-2 border-pink-300 shadow-xl h-fit">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 border-b-2 border-pink-200 pb-3">
           <PlusCircleIcon v-if="!editingId" class="w-5 h-5 text-pink-600" />
           <PencilIcon v-else class="w-5 h-5 text-amber-600" />
           <span>{{ editingId ? 'Edit Jenis Barang' : 'Tambah Jenis Barang Baru' }}</span>
@@ -72,7 +72,7 @@
               v-if="editingId"
               type="button"
               @click="cancelEdit"
-              class="w-1/2 py-2.5 px-4 rounded-xl border border-pink-200 text-slate-700 hover:bg-pink-50 transition font-medium text-sm"
+              class="w-1/2 py-2.5 px-4 rounded-xl border-2 border-pink-300 text-slate-700 hover:bg-pink-50 transition font-medium text-sm"
             >
               Batal Edit
             </button>
@@ -94,7 +94,7 @@
       </div>
 
       <!-- Table / Cards Master Jenis Barang -->
-      <div class="lg:col-span-2 glass-card rounded-2xl border border-pink-200 overflow-hidden shadow-xl">
+      <div class="lg:col-span-2 glass-card rounded-2xl border-2 border-pink-300 overflow-hidden shadow-xl">
         <div class="p-4 border-b border-pink-200 flex justify-between items-center bg-pink-50/50">
           <h3 class="font-bold text-slate-900 text-base">Daftar Master Jenis Barang</h3>
           <span class="text-xs text-slate-500 font-mono">Total: {{ masterItems.length }} Item</span>
